@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import  Axios  from "axios";
 export default function Products() {
-const [dataProducts , setDataProducts] = useState([])
+const [dataProducts , setDataProducts] = useState<ProductsProps[]>([])
   async function gitApi() {
     try {
       const {data} = await Axios.get(`http://localhost:9000/posts`);
@@ -32,14 +32,20 @@ const [dataProducts , setDataProducts] = useState([])
     gitApi();
   }, []);
   
-  
+  interface ProductsProps {
+    title: string
+    thumbnail: any
+    id:number
+  }
+
+
   return (
     <Container maxWidth={`7x1`}>
       <Flex gap={`10px`} flexWrap="wrap">
         {
-          dataProducts.map((item)=>(
-          
-             <Card key={item.id}
+          dataProducts.map((item:ProductsProps)=>(
+          <div key={item.id}>
+       <Card 
           maxW={["100%", "100%", "calc(50% - 20px)", "calc(33.33% - 20px)"]}
         >
           <CardBody>
@@ -70,7 +76,7 @@ const [dataProducts , setDataProducts] = useState([])
             </ButtonGroup>
           </CardFooter>
         </Card>
-         
+          </div>
           ))
         }
        
