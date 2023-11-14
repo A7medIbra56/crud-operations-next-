@@ -22,6 +22,8 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react'
+import { Link as ChakraLink, LinkProps as ChakraLinkProps } from '@chakra-ui/react';
+
 import {
   FiHome,
   FiTrendingUp,
@@ -38,12 +40,13 @@ import Link from 'next/link'
 interface LinkItemProps {
   name: string
   icon: IconType
-  to:any
+  to:string
 }
 
 interface NavItemProps extends FlexProps {
   icon: IconType
   children: React.ReactNode
+  to:any
 }
 
 interface MobileProps extends FlexProps {
@@ -79,7 +82,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem to={link.to} key={link.name} icon={link.icon}>
+        <NavItem   to={link.to} key={link.name} icon={link.icon}>
           {link.name}
         </NavItem>
       ))}
